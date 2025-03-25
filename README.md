@@ -1,7 +1,20 @@
-# AI-Scenario-Analysis-Prompting
 # Scenario Analyzer
 
 A full-stack web application that leverages AI to analyze business scenarios and provide structured recommendations based on user constraints.
+
+## Table of Contents
+- [Features](#features)
+- [Architecture](#architecture)
+- [Prerequisites](#prerequisites)
+- [Installation & Setup](#installation--setup)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
+- [Running the Application](#running-the-application)
+- [Testing](#testing)
+- [API Documentation](#api-documentation)
+- [AI Implementation Details](#ai-implementation-details)
+- [Error Handling](#error-handling)
+- [Security Considerations](#security-considerations)
 
 ## Features
 
@@ -15,20 +28,45 @@ A full-stack web application that leverages AI to analyze business scenarios and
 - Spring Boot backend with OpenAI GPT-4 integration
 - React frontend with responsive design
 
-## Project Structure
+## Architecture
+
+```
+/
+├── SpringBoot/                 # Backend Spring Boot application
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/analyzer/
+│   │   │   │   ├── controller/    # REST controllers
+│   │   │   │   ├── model/         # Data models
+│   │   │   │   ├── service/       # Business logic & OpenAI integration
+│   │   │   │   └── ScenarioAnalyzerApplication.java
+│   │   │   └── resources/
+│   │   │       └── application.properties  # Configuration
+│   │   └── test/                  # JUnit tests
+│   ├── mvnw                       # Maven wrapper
+│   └── pom.xml                    # Maven dependencies
+└── react-frontend/               # React frontend
+    ├── public/
+    ├── src/
+    │   ├── components/            # React components
+    │   ├── App.js                 # Main application component
+    │   └── App.css                # Styles
+    └── package.json              # NPM dependencies
+```
 
 ## Prerequisites
-
 - Java 17 or higher
 - Node.js 14 or higher
 - npm 6 or higher
 - OpenAI API key
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Internet connection for API calls
 
-## Environment Variables
+## Installation & Setup
 
-### Backend
+### Backend Setup
 
-The `application.properties` file in the `src/main/resources` directory should have the following content:
+1. Configure the environment variables in `src/main/resources/application.properties`:
 
 ```properties
 # Server configuration
@@ -50,29 +88,12 @@ logging.level.com.example.analyzer=DEBUG
 
 **Important**: Instead of hardcoding your API key, set it as an environment variable when running the application.
 
+### Frontend Setup
 
+The frontend communicates with the backend API at http://localhost:8080/api by default.
 
 ## Running the Application
-### Frontend
 
-1. Navigate to the react-frontend directory:
-   ```bash
-   cd react-frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm start
-   ```
-
-4. Access the application at http://localhost:3000
-
-The frontend communicates with the backend API at http://localhost:8080/api by default. 
 ### Backend
 
 1. Navigate to the SpringBoot directory:
@@ -106,7 +127,7 @@ The frontend communicates with the backend API at http://localhost:8080/api by d
 
 4. Access the application at http://localhost:3000
 
-## JUnit Tests
+## Testing
 
 The Spring Boot application includes comprehensive JUnit tests to ensure the reliability and functionality of the backend components.
 
@@ -114,7 +135,6 @@ The Spring Boot application includes comprehensive JUnit tests to ensure the rel
 
 `ScenarioAnalysisControllerTest.java` validates that:
 - The API endpoint correctly accepts POST requests with scenario data
-- The controller properly delegates to the service layer
 - Responses are formatted correctly with appropriate status codes
 - Validation errors are handled properly for invalid requests
 
@@ -122,13 +142,8 @@ The Spring Boot application includes comprehensive JUnit tests to ensure the rel
 
 `AiServiceTest.java` tests the core AI integration functionality:
 - Mocks the OpenAI API calls to test without making actual external requests
-- Verifies that requests to OpenAI are properly formatted with the correct:
-  - Headers (Authorization, Content-Type)
-  - Request body (model selection, temperature settings, prompt construction)
 - Ensures proper parsing of OpenAI responses into structured data
-- Tests error handling for API failures (401 unauthorized, network issues, etc.)
-
-These tests use Mockito to replace external dependencies like the OpenAI API with controlled test doubles, allowing for consistent and reliable testing without requiring actual API keys or network connectivity.
+- Tests error handling for API failures
 
 ### Running Tests
 
@@ -138,18 +153,46 @@ cd SpringBoot
 ./mvnw test
 ```
 
-This will execute all test classes and report any failures.
 ## API Documentation
 
 ### Endpoint: POST /api/analyze-scenario
 
 Analyzes a scenario and returns structured recommendations.
 
-Request Body:
+#### Request Body:
+```json
+{
+  "scenario": "Our team has a new client project with a tight deadline and limited budget.",
+  "constraints": [
+    "Budget: $10,000",
+    "Deadline: 6 weeks",
+    "Team of 3 developers"
+  ]
+}
+```
 
-
-Response Body:
-
+#### Response Body:
+```json
+{
+  "scenarioSummary": "A small team must deliver a client project within 6 weeks on a $10,000 budget.",
+  "potentialPitfalls": [
+    "Scope creep due to unclear requirements",
+    "Underestimation of resource constraints",
+    "Risk of burnout with limited manpower"
+  ],
+  "proposedStrategies": [
+    "Define clear milestones and requirements early",
+    "Implement lean project management principles",
+    "Conduct weekly check-ins to monitor progress"
+  ],
+  "recommendedResources": [
+    "Trello or Jira for agile task management",
+    "Open-source libraries to reduce cost",
+    "Online tutorials for rapid skill upskilling"
+  ],
+  "disclaimer": "These suggestions are generated by AI; consult subject matter experts for tailored guidance."
+}
+```
 
 ## AI Implementation Details
 
@@ -169,7 +212,7 @@ The AI prompt has been carefully engineered to provide structured analysis with:
 
 You can modify the prompt structure in `AiService.java` if you need to adjust the AI's analysis approach.
 
-## Edge Case Handling
+## Error Handling
 
 The application includes several mechanisms to handle edge cases and errors:
 
@@ -206,17 +249,5 @@ The application includes several mechanisms to handle edge cases and errors:
 3. **Loading States**
    - Loading indicators display while waiting for AI analysis
    - Prevents multiple submissions during processing
-
-### Security Considerations
-
-1. **API Key Protection**
-   - API keys are not hardcoded but provided as environment variables
-   - Backend acts as a proxy to protect API keys from frontend exposure
-
-2. **Input Sanitization**
-   - User input is sanitized before processing
-   - Prevents injection attacks and ensures prompt safety
-
-
 
 
