@@ -1,0 +1,165 @@
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.App-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.App-header h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.App-main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.scenario-form-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.scenario-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+textarea, input {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+  border-color: #4dabf7;
+  box-shadow: 0 0 0 2px rgba(77, 171, 247, 0.25);
+}
+
+.constraint-input {
+  display: flex;
+  gap: 10px;
+}
+
+.constraint-input input {
+  flex: 1;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remove-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.add-constraint-btn {
+  background-color: #3498db;
+  color: white;
+  align-self: flex-start;
+}
+
+.submit-btn {
+  background-color: #2ecc71;
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.error {
+  border-color: #e74c3c !important;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 14px;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.analysis-results {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-section {
+  margin-bottom: 20px;
+}
+
+.result-section h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 5px;
+}
+
+.result-section ul {
+  padding-left: 20px;
+}
+
+.result-section li {
+  margin-bottom: 8px;
+}
+
+.disclaimer {
+  font-style: italic;
+  color: #6c757d;
+  font-size: 0.9em;
+  border-top: 1px solid #e9ecef;
+  padding-top: 15px;
+}
+
+.App-footer {
+  margin-top: 50px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.9em;
+}
