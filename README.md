@@ -9,7 +9,7 @@ A full-stack web application that leverages AI to analyze business scenarios and
 - [Running the Application](#running-the-application)
 - [Testing](#testing)
 - [API Documentation](#api-documentation)
-- [AI Implementation Details](#ai-implementation-details)
+- [Implementation Details](#implementation-details)
 
 
 ## Features
@@ -139,13 +139,13 @@ Analyzes a scenario and returns structured recommendations.
 #### Response Body:
 ![Alt text](Screenshots/response.jpeg)
 
-## AI Implementation Details
+## Implementation Details
 
 The application uses OpenAI's GPT-4o-mini model to analyze business scenarios. The service:
 
 1. Takes an input of a detailed prompt with the user's scenario and constraints
    - Minimum Constraint Frontend Error Handling
-     ![Alt text](Screenshots/response.jpeg)
+     ![Alt text](Screenshots/minimum-constraints.jpeg)
 3. Makes API calls to OpenAI with appropriate parameters:
    - Temperature: 0.3 (for more consistent outputs)
    - Max tokens: 1000 (for complete but concise responses)
