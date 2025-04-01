@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 public class AiServiceTest {
 
     private static final String TEST_API_KEY = "test-api-key";
-    private static final String TEST_MODEL = "gpt-4";
+    private static final String TEST_MODEL = "gpt-4o-mini";
 
     @Mock
     private RestTemplate restTemplate;
@@ -38,7 +38,7 @@ public class AiServiceTest {
     public void setup() {
         ReflectionTestUtils.setField(aiService, "apiKey", TEST_API_KEY);
         ReflectionTestUtils.setField(aiService, "model", TEST_MODEL);
-        // This is crucial - manually set the RestTemplate field
+        
         ReflectionTestUtils.setField(aiService, "restTemplate", restTemplate);
     }
 

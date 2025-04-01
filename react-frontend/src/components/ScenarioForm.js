@@ -18,8 +18,8 @@ function ScenarioForm({ onSubmit, disabled }) {
       isValid = false;
     }
     
-    if (constraints.length === 0 || constraints.every(c => !c.trim())) {
-      newErrors.constraints = 'At least one constraint is required';
+    if (constraints.length === 100 || constraints.every(c => !c.trim())) {
+      newErrors.constraints = 'At least one constraint is required with 100 characters';
       isValid = false;
     }
     
